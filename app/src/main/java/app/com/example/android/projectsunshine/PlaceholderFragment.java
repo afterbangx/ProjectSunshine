@@ -18,6 +18,11 @@ public class PlaceholderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_placeholder, container, false);
+
+        //creating some fake data
         String[] data = {
                 "Mon 6/23 - Sunny - 31/17",
                 "Tue 6/24 - Foggy - 21/8",
@@ -35,7 +40,9 @@ public class PlaceholderFragment extends Fragment {
                 R.id.listitem_forecast_textview,
                 weekForecast);
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_placeholder, container, false);
+        ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
+        listView.setAdapter(forecastAdapter);
+
+        return rootView;
     }
 }
