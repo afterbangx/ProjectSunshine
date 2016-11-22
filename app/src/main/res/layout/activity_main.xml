@@ -11,8 +11,8 @@
     tools:context="app.com.example.android.projectsunshine.MainActivity">
 
     <fragment android:name="app.com.example.android.projectsunshine.ForecastFragment"
-        android:id="@+id/fragment_forecast"
+        android:id="@+id/fragment_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_forecast" />
+        tools:layout="@layout/fragment_main" />
 </RelativeLayout>
