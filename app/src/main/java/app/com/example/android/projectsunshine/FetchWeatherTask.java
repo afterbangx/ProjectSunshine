@@ -14,6 +14,14 @@ import java.net.URL;
  * Created by amilbeck on 11/22/2016.
  */
 
+/*************************************************************************************
+ *   framework does not allow you to run network operations on the main thread       *
+ *   android apps run by default on the main thread - also called the UI thread      *
+ *   it handles all user IO, avoid any time consuming operations on the main thread  *
+ *   otherwise this could cause the UI to stutter                                    *
+ *   instead we should open a background worker thread and perform network IO there  *
+ ************************************************************************************/
+
 public class FetchWeatherTask extends AsyncTask<Void, Void, Void> {
     private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
 
@@ -33,11 +41,6 @@ public class FetchWeatherTask extends AsyncTask<Void, Void, Void> {
             //create request to openweathermap and open connection
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            //framework does not allow you to run network operations on the main thread
-            //android apps run by default on the main thread - also called the UI thread
-            //it handles all user IO, avoid any time consuming operations on the main thread
-            //otherwise this could cause the UI to stutter
-            //instead we should open a background worker thread and perform network IO there
             urlConnection.connect();
 
             //read input stream
@@ -63,7 +66,7 @@ public class FetchWeatherTask extends AsyncTask<Void, Void, Void> {
             forecastJsonStr = buffer.toString();
 
         } catch(IOException ex) {
-            Log.e("PlaceholderFragment", "Error", ex);
+            Log.e(LOG_TAG, "Error", ex);
             return null;
         } finally {
             if(urlConnection != null) {
@@ -74,7 +77,7 @@ public class FetchWeatherTask extends AsyncTask<Void, Void, Void> {
                 try {
                     reader.close();
                 } catch(final IOException ex) {
-                    Log.e("PlaceholderFragment", "Error closing stream", ex);
+                    Log.e(LOG_TAG, "Error closing stream", ex);
                 }
             }
         }
