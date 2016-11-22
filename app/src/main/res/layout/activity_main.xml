@@ -10,9 +10,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="app.com.example.android.projectsunshine.MainActivity">
 
-    <fragment android:name="app.com.example.android.projectsunshine.PlaceholderFragment"
-        android:id="@+id/fragment_placeholder"
+    <fragment android:name="app.com.example.android.projectsunshine.ForecastFragment"
+        android:id="@+id/fragment_forecast"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_placeholder" />
+        tools:layout="@layout/fragment_forecast" />
 </RelativeLayout>
